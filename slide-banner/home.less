@@ -1,0 +1,134 @@
+// initialize
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@color: #fff;
+@bgColor: #932;
+@cubic-bezier1: 0.165, 0.84, 0.44, 1;   // ease-out Quartic
+@cubic-bezier2: 0.25, 0.1, 0.25, 1.0;   // ease(default)
+@cubic-bezier3: 0.25, 0.25, 0.75, 0.75; // linear
+@cubic-bezier4: 0.42, 0.0, 1.0, 1.0;    // ease-in
+@cubic-bezier5: 0.0, 0.0, 0.58, 1.0;    // ease-out
+@cubic-bezier6: 0.42, 0.0, 0.58, 1.0;   // ease-in-out
+
+.animation(@name:slideBg1,@delay:0.1s,@cubic-bezier:@cubic-bezier1) {
+  animation-name: @name;
+  animation-delay: @delay;
+  animation-duration: 2s;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(@cubic-bezier);
+  animation-iteration-count: 1;
+}
+@height: 5rem;
+@margin-bt: 1rem;
+@top: 1rem;
+#bg1 {
+  position: relative;
+  width: 65%;
+  height: @height;
+  margin-bottom: @margin-bt;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top:1rem;
+    left:0;
+    background-color: @bgColor;
+    height: 100%;
+    .animation();
+  }
+}
+@keyframes slideBg1 {
+  0% { right: 100%; }
+  100% { right: 0%; }
+}
+#title1 {
+  position:absolute;
+  top:@top;
+  right:0;
+  width: 60%;
+  color: @color;
+  margin-top: 1rem;
+  .animation(slideTtl1,0.3s);
+}
+@keyframes slideTtl1 {
+  0% { right: 100%; }
+  100% { right: 34%; }
+}
+
+#bg2:extend(#bg1) {
+  &:before:extend(#bg1:before) {
+    background-color: #329;
+    .animation(@cubic-bezier:@cubic-bezier2);
+  }
+}
+#title2:extend(#title1) {
+  top: @height + @margin-bt + @top;
+  .animation(slideTtl1,0.3s,@cubic-bezier2)
+}
+#bg3:extend(#bg1) {
+  &:before:extend(#bg1:before) {
+    background-color: rgb(34, 139, 153);
+    .animation(@cubic-bezier:@cubic-bezier3);
+  }
+}
+#title3:extend(#title1) {
+  top: (@height + @margin-bt) * 2 + @top;
+  .animation(slideTtl1,0.3s,@cubic-bezier3)
+}
+#bg4:extend(#bg1) {
+  &:before:extend(#bg1:before) {
+    background-color: rgb(88, 153, 34);
+    .animation(@cubic-bezier:@cubic-bezier4);
+  }
+}
+#title4:extend(#title1) {
+  top: (@height + @margin-bt) * 3 + @top;
+  .animation(slideTtl1,0.3s,@cubic-bezier4)
+}
+#bg5:extend(#bg1) {
+  &:before:extend(#bg1:before) {
+    background-color: rgb(153, 135, 34);
+    .animation(@cubic-bezier:@cubic-bezier5);
+  }
+}
+#title5:extend(#title1) {
+  top: (@height + @margin-bt) * 4 + @top;
+  .animation(slideTtl1,0.3s,@cubic-bezier5)
+}
+#bg6:extend(#bg1) {
+  &:before:extend(#bg1:before) {
+    background-color: rgb(153, 91, 34);
+    .animation(@cubic-bezier:@cubic-bezier6);
+  }
+}
+#title6:extend(#title1) {
+  top: (@height + @margin-bt) * 5 + @top;
+  .animation(slideTtl1,0.3s,@cubic-bezier6)
+}
+
+
+// for using background class
+// .bg {
+//   position: relative;
+//   width: 60%;
+//   height: 5rem;
+
+//   &:before {
+//     content: "";
+//     position: absolute;
+//     top:1rem;
+//     left:0;
+
+//     height: 100%;
+//     .animation(slideBg1,0.1s);
+//   }
+  
+//   &:nth-child(odd):before {
+//     background-color: @bgColor;
+//   }
+//   margin-bottom: 1rem;
+// }
