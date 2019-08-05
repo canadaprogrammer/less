@@ -27,7 +27,7 @@
 @top: 1rem;
 #bg1 {
   position: relative;
-  width: 65%;
+  width: 100%;
   height: @height;
   margin-bottom: @margin-bt;
 
@@ -45,18 +45,40 @@
   0% { right: 100%; }
   100% { right: 0%; }
 }
+// .backgroundTitle {
+//   width: 100%;
+// }
 #title1 {
   position:absolute;
+  letter-spacing: 0.7px;
   top:@top;
   right:0;
-  width: 60%;
+  width: 100%;
   color: @color;
   margin-top: 1rem;
   .animation(slideTtl1,0.3s);
 }
 @keyframes slideTtl1 {
   0% { right: 100%; }
-  100% { right: 34%; }
+  100% { right: -18%; }
+}
+@media(min-width:560px) {
+  #bg1 {
+    width: 70%;
+  }
+  // #title1 {
+  //   width: auto;
+  //   .animation(slideTtlTablet, 0.3s);
+  // }
+}
+// @keyframes slideTtlTablet {
+//   0% { right: 100%; }
+//   100% { right: 33%; }
+// }
+@media(min-width:1024px) {
+  #bg1 {
+    width: 50%;
+  }
 }
 
 #bg2:extend(#bg1) {
